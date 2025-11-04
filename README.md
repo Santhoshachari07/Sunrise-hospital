@@ -63,12 +63,10 @@ It presents hospital services, doctors, appointment booking, testimonials, and c
 ```
 hospital-website/
 │
-├── index.html          # Main HTML file
-├── style.css           # (Optional) Separate CSS file
-├── images/             # Local image assets
+├── hospital.html          # Main HTML file along with CSS and images
+
 ├── README.md           # Documentation
-└── assets/             # Optional resources (fonts, icons, etc.)
-```
+
 
 ---
 
@@ -80,12 +78,12 @@ hospital-website/
    ```
 
 2. **Run Locally**
-   - Open `index.html` directly in your browser  
+   - Open `hospital.html` directly in your browser  
      or  
    - Use **Live Server** in VS Code for live preview.
 
 3. **Edit Content**
-   - Update hospital name, services, doctors, and contact details in `index.html`.  
+   - Update hospital name, services, doctors, and contact details in `hospital.html`.  
    - Replace image URLs or use your own from `/images`.
 
 4. **Optional – External CSS**
