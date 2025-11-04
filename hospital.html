@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sunrise Care Hospital</title>
+  <meta name="description" content="Sunrise Care Hospital – compassionate, modern healthcare with 24/7 emergency, outpatient, and specialty clinics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e1a2b;
+      --card:#111f34;
+      --brand:#2ebfa5;
+      --brand-2:#3bc7de;
+      --text:#e8f0fe;
+      --muted:#a8b3c7;
+      --focus: #ffd166;
+      --danger:#ff6b6b;
+      --success:#3bcf7a;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,var(--bg),#0b1422);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px,100% - 2rem);margin-inline:auto}
+    .button{display:inline-block;padding:.875rem 1.25rem;border-radius:12px;font-weight:600;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#002018;box-shadow:var(--shadow);border:0}
+    .button.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15)}
+    .button.full{width:100%;text-align:center}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);backdrop-filter: blur(8px);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .grid{display:grid;gap:1rem}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(14,26,43,.75);backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:.75rem 0}
+    .brand{display:flex;gap:.75rem;align-items:center}
+    .brand .logo{width:40px;height:40px;border-radius:10px;background:radial-gradient(120% 120% at 30% 20%,var(--brand),var(--brand-2));box-shadow:0 6px 16px rgba(59,199,222,.35)}
+    .brand h1{font-size:1.1rem;margin:0;font-weight:700;letter-spacing:.2px}
+
+    /* Mobile nav */
+    #nav-toggle{display:none}
+    .nav-links{display:flex;gap:1rem;align-items:center}
+    .nav-links a{padding:.6rem .8rem;border-radius:10px;color:var(--muted)}
+    .nav-links a:hover,.nav-links a:focus{color:var(--text);background:rgba(255,255,255,.06)}
+    .hamburger{display:none;cursor:pointer;padding:.5rem;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+    .hamburger:focus{outline:3px solid var(--focus)}
+
+    /* Hero */
+    .hero{padding:4rem 0 3rem;display:grid;gap:2rem;align-items:center}
+    .hero h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15;margin:.25rem 0}
+    .hero p{color:var(--muted);font-size:1.05rem}
+    .hero .cta{display:flex;gap:.75rem;flex-wrap:wrap}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+    .stat{padding:1rem;text-align:center}
+    .stat h3{margin:.25rem 0 0;font-size:1.35rem}
+    .badge{display:inline-flex;gap:.5rem;align-items:center;font-weight:600;color:#02261e;background:linear-gradient(135deg,#b6f7e2,#a9e7ff);padding:.4rem .7rem;border-radius:999px}
+
+    /* Sections */
+    section{padding:3rem 0}
+    section h3{font-size:1.6rem;margin:0 0 1rem}
+    .subtitle{color:var(--muted);margin-top:-.5rem}
+
+    /* Services */
+    .services{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .service{padding:1rem}
+    .service h4{margin:.75rem 0 .25rem}
+    .service p{color:var(--muted);font-size:.95rem}
+
+    /* Doctors */
+    .doctors{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .doc{overflow:hidden}
+    .doc img{border-bottom:1px solid rgba(255,255,255,.08);aspect-ratio:4/3;object-fit:cover}
+    .doc .content{padding:1rem}
+    .doc .role{color:var(--muted);font-size:.95rem}
+
+    /* Appointment form */
+    form{display:grid;gap:1rem}
+    label{font-weight:600}
+    input,select,textarea{width:100%;padding:.9rem .9rem;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text)}
+    input::placeholder,textarea::placeholder{color:#9fb0c7}
+    input:focus,select:focus,textarea:focus{outline:3px solid var(--focus);border-color:transparent}
+    .form-grid{grid-template-columns:1fr}
+
+    /* Testimonials */
+    .testimonials{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .quote{padding:1.25rem}
+    .quote p{color:var(--muted)}
+
+    /* Contact */
+    .contact{display:grid;gap:1rem}
+    .contact .info{display:grid;gap:.5rem;color:var(--muted)}
+    .map{border:0;width:100%;height:280px;border-radius:14px}
+
+    /* Footer */
+    footer{padding:2rem 0;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+
+    /* Utilities */
+    .two-col{display:grid;gap:1rem}
+
+    /* Media queries */
+    @media (min-width: 768px){
+      .hero{grid-template-columns:1.1fr .9fr}
+      .two-col{grid-template-columns:1.1fr .9fr}
+      .form-grid{grid-template-columns:repeat(2,1fr)}
+      .hamburger{display:none}
+    }
+    @media (max-width: 767px){
+      .nav-links{position:fixed;inset:56px 1rem auto 1rem;flex-direction:column;background:var(--card);padding:1rem;border-radius:14px;display:none;border:1px solid rgba(255,255,255,.1)}
+      .hamburger{display:inline-flex;gap:.5rem;align-items:center}
+      #nav-toggle:checked ~ .nav-links{display:flex}
+    }
+
+    /* Skip link */
+    .skip-link{position:absolute;left:-999px;top:auto}
+    .skip-link:focus{left:1rem;top:1rem;background:#fff;color:#000;padding:.5rem .75rem;border-radius:8px}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header aria-label="Primary">
+    <div class="container nav">
+      <div class="brand">
+        <div aria-hidden="true" class="logo"></div>
+        <h1>Sunrise Care Hospital</h1>
+      </div>
+
+      <!-- Mobile hamburger (CSS only) -->
+      <label class="hamburger" for="nav-toggle" aria-label="Open menu" role="button" aria-controls="primary-navigation" aria-expanded="false">☰ Menu</label>
+      <input type="checkbox" id="nav-toggle" hidden aria-hidden="true" />
+
+      <nav id="primary-navigation" class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#doctors">Doctors</a>
+        <a href="#appointment">Appointments</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero container">
+      <div>
+        <span class="badge" aria-label="24/7 emergency available">24/7 Emergency • NABH Accredited</span>
+        <h2>Compassionate care, modern medicine.</h2>
+        <p>From emergency to outpatient clinics, our specialists deliver world‑class care with state‑of‑the‑art facilities and a patient‑first approach.</p>
+        <div class="cta">
+          <a class="button" href="#appointment">Book an Appointment</a>
+          <a class="button ghost" href="#services">Explore Services</a>
+        </div>
+        <div class="stats" aria-label="Hospital highlights">
+          <div class="card stat">
+            <strong style="font-size:1.6rem">150+</strong>
+            <h3>Doctors</h3>
+          </div>
+          <div class="card stat">
+            <strong style="font-size:1.6rem">25</strong>
+            <h3>Specialties</h3>
+          </div>
+          <div class="card stat">
+            <strong style="font-size:1.6rem">1.2M</strong>
+            <h3>Patients Served</h3>
+          </div>
+        </div>
+      </div>
+      <div class="card" aria-hidden="true" style="overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1600&auto=format&fit=crop" alt="Modern hospital lobby with clean design" />
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container">
+      <h3>Our Services</h3>
+      <p class="subtitle">Integrated, patient‑centered care across key specialties.</p>
+      <div class="grid services">
+        <article class="card service">
+          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop" alt="Doctor holding stethoscope"/>
+          <h4>Cardiology</h4>
+          <p>Comprehensive heart care including diagnostics, interventional cardiology, and rehabilitation.</p>
+        </article>
+        <article class="card service">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop" alt="Operating theatre"/>
+          <h4>Emergency & Trauma</h4>
+          <p>24/7 emergency with rapid triage, advanced imaging, and critical care support.</p>
+        </article>
+        <article class="card service">
+          <img src="https://images.unsplash.com/photo-1580281657527-47f249e8f46b?q=80&w=1200&auto=format&fit=crop" alt="MRI scanner"/>
+          <h4>Radiology</h4>
+          <p>High‑resolution MRI, CT, and ultrasound with expert reporting.</p>
+        </article>
+        <article class="card service">
+          <img src="https://images.unsplash.com/photo-1580281780460-92b156a6d23d?q=80&w=1200&auto=format&fit=crop" alt="Pediatric ward"/>
+          <h4>Pediatrics</h4>
+          <p>Child‑friendly care from neonatal to adolescent medicine.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Doctors -->
+    <section id="doctors" class="container">
+      <h3>Meet Our Doctors</h3>
+      <p class="subtitle">Experienced clinicians, subspecialty training, and a human touch.</p>
+      <div class="grid doctors">
+        <article class="card doc">
+          <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=1200&auto=format&fit=crop" alt="Portrait of Dr. Arjun Mehra"/>
+          <div class="content">
+            <h4>Dr. Arjun Mehra</h4>
+            <p class="role">Senior Cardiologist</p>
+          </div>
+        </article>
+        <article class="card doc">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop" alt="Portrait of Dr. Nisha Rao"/>
+          <div class="content">
+            <h4>Dr. Nisha Rao</h4>
+            <p class="role">Chief Radiologist</p>
+          </div>
+        </article>
+        <article class="card doc">
+          <img src="https://images.unsplash.com/photo-1551190822-a9333d879b1f?q=80&w=1200&auto=format&fit=crop" alt="Portrait of Dr. Kabir Shah"/>
+          <div class="content">
+            <h4>Dr. Kabir Shah</h4>
+            <p class="role">Emergency Medicine</p>
+          </div>
+        </article>
+        <article class="card doc">
+          <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1200&auto=format&fit=crop" alt="Portrait of Dr. Meera Iyer"/>
+          <div class="content">
+            <h4>Dr. Meera Iyer</h4>
+            <p class="role">Pediatrician</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Appointment -->
+    <section id="appointment" class="container two-col">
+      <div>
+        <h3>Book an Appointment</h3>
+        <p class="subtitle">Fill in your details and our team will confirm your slot shortly.</p>
+        <form action="#" method="post" aria-label="Appointment form">
+          <div class="grid form-grid">
+            <div>
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" placeholder="e.g., Priya Sharma" required />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="10-digit number" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="department">Department</label>
+              <select id="department" name="department" required>
+                <option value="" disabled selected>Select a department</option>
+                <option>Cardiology</option>
+                <option>Emergency & Trauma</option>
+                <option>Radiology</option>
+                <option>Pediatrics</option>
+              </select>
+            </div>
+            <div>
+              <label for="date">Preferred Date</label>
+              <input id="date" name="date" type="date" required />
+            </div>
+            <div>
+              <label for="time">Preferred Time</label>
+              <input id="time" name="time" type="time" required />
+            </div>
+            <div style="grid-column:1 / -1">
+              <label for="message">Notes (optional)</label>
+              <textarea id="message" name="message" rows="4" placeholder="Symptoms, prior reports, special needs…"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="button full" aria-label="Submit appointment request">Request Appointment</button>
+          <p style="color:var(--muted);font-size:.9rem;margin:.5rem 0 0">By submitting, you agree to our privacy policy. We will contact you to confirm the appointment.</p>
+        </form>
+      </div>
+      <aside class="card" style="padding:1.25rem">
+        <h4 style="margin:0 0 .5rem">Why choose Sunrise Care?</h4>
+        <ul style="margin:0;padding-left:1.1rem;color:var(--muted);line-height:1.6">
+          <li>Internationally accredited clinical protocols</li>
+          <li>Advanced diagnostics and critical care</li>
+          <li>Cashless insurance with major providers</li>
+          <li>Digital records & e-prescriptions</li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="container">
+      <h3>Patient Stories</h3>
+      <p class="subtitle">Real experiences from people we’ve cared for.</p>
+      <div class="grid testimonials">
+        <figure class="card quote">
+          <blockquote>
+            <p>“The ER team acted within minutes and kept us informed throughout. Grateful for the calm professionalism.”</p>
+          </blockquote>
+          <figcaption>— Rohan K.</figcaption>
+        </figure>
+        <figure class="card quote">
+          <blockquote>
+            <p>“State‑of‑the‑art imaging and quick diagnosis helped my mother get treated without delay.”</p>
+          </blockquote>
+          <figcaption>— Ananya S.</figcaption>
+        </figure>
+        <figure class="card quote">
+          <blockquote>
+            <p>“Kid‑friendly doctors who really listen. My son actually looks forward to visits!”</p>
+          </blockquote>
+          <figcaption>— Priyanka D.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="container two-col">
+      <div>
+        <h3>Contact & Location</h3>
+        <div class="card info" style="padding:1rem">
+          <p><strong>Address:</strong> 221B Health Avenue, Bengaluru 560001</p>
+          <p><strong>Phone:</strong> +91 80 5555 1234</p>
+          <p><strong>Email:</strong> hello@sunrisecare_gmail.com</p>
+          <p><strong>Hours:</strong> Open 24/7 (OPD 8am-8pm)</p>
+        </div>
+      </div>
+      <div>
+        <iframe class="map card" title="Map to Sunrise Care Hospital" loading="lazy" allowfullscreen src="https://www.openstreetmap.org/export/embed.html?bbox=77.585%2C12.965%2C77.605%2C12.985&amp;layer=mapnik"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between">
+      <p style="margin:0">© <span id="year"></span> Sunrise Care Hospital. All rights reserved.</p>
+      <div style="display:flex;gap:.75rem">
+        <a href="#" aria-label="Privacy Policy">Privacy</a>
+        <a href="#" aria-label="Terms of Service">Terms</a>
+        <a href="#" aria-label="Feedback">Feedback</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // non‑critical enhancement: update year; keeps site functional without JS
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // keep hamburger aria-expanded in sync (progressive enhancement)
+    const toggle = document.getElementById('nav-toggle');
+    const label = document.querySelector('label[for="nav-toggle"]');
+    if(toggle && label){
+      const sync = () => label.setAttribute('aria-expanded', toggle.checked ? 'true' : 'false');
+      toggle.addEventListener('change', sync); sync();
+    }
+  </script>
+</body>
+</html>
